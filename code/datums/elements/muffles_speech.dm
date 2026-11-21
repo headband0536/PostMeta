@@ -18,8 +18,14 @@
 
 /datum/element/muffles_speech/proc/equipped(obj/item/source, mob/user, slot)
 	SIGNAL_HANDLER
+	//MASSMETA EDIT CHANGE BEGIN (zoro)
+	/* ORIGINAL
 	if(!(source.slot_flags & slot))
 		return
+	*/
+	if(!(slot & ITEM_SLOT_MASK))
+		return
+	//MASSMETA EDIT CHANGE END
 	var/user_ref = REF(user)
 	if(!LAZYACCESS(affected_refs, user_ref))
 		RegisterSignal(user, COMSIG_MOB_SAY, PROC_REF(muzzle_talk))
